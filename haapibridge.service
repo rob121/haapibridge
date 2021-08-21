@@ -1,0 +1,14 @@
+[Unit]
+Description=HA Api Bridge  server
+After=syslog.target network.target remote-fs.target nss-lookup.target
+
+[Service]
+Type=simple
+PIDFile=/run/haapibridge.pid
+ExecStart=/usr/local/bin/haapibridge
+ExecStop=/bin/kill -s QUIT $MAINPID
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
